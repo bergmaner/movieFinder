@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Background from "./Background";
 const Home = () => {
   const [data, setData] = useState({
     movies: [],
@@ -24,11 +25,19 @@ const Home = () => {
           loading: false,
           actualPage: result.page,
           totalPages: result.total_pages,
-          backgroundImage: result.results[0],
+          backgroundImage: result.results[2],
         }));
       });
   }, []);
   console.log(data);
-  return <div>Home</div>;
+  return (
+    <div>
+      <Background
+        image={`https://image.tmdb.org/t/p/w1280_and_h720_bestv2${data.backgroundImage.backdrop_path}`}
+        title={data.backgroundImage.title}
+        overview={data.backgroundImage.overview}
+      />
+    </div>
+  );
 };
 export default Home;
