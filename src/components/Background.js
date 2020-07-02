@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const HeroHeader = styled.div`
   width: 100vw;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  justify-content:flex-end;
+  justify-content: flex-end;
   background-size: 100%, cover !important;
   background-position: 50%, 50% !important;
   width: 100%;
@@ -18,14 +18,17 @@ const HeroHeader = styled.div`
       rgba(0, 0, 0, 0.65) 100%
     ),
     url(${(props) => props.image}), rgb(28, 28, 28);
-    h1{
-      margin:0px;
-    }
+  h1 {
+    margin: 0px;
+  }
 `;
 
 const Description = styled.div`
-background: rgba(0,0,0,0.6);
-padding:2px 0px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 30px;
+  div {
+    text-align: left;
+  }
 `;
 
 const Background = ({ image, title, overview }) => {
