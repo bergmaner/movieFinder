@@ -15,6 +15,7 @@ const Header = styled.div`
 `;
 
 const Title = styled.div`
+font-family: "Montserrat", sans-serif;
   flex-grow: 1;
   display: flex;
   justify-content: flex-start;

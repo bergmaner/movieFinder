@@ -20,39 +20,33 @@ const BlankStar = styled(BsStar)`
   font-size: 24px;
 `;
 const Rating = styled.div`
-display: flex;
-justify-content: space-around;
-align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 const StarRating = ({ rating }) => {
   const [stars, setStars] = useState([]);
-  const [starsCount, setStarsCount] = useState(0);
   const maxStars = 5;
   useEffect(() => {
     const array = [];
-    let starsAmount = 0;
     for (let i = 0; i < maxStars; i++) {
       if (rating >= 2) {
         array.push(<Star />);
-        starsAmount++;
       } else if (rating > 1 && rating < 2) {
         array.push(<HalfStar />);
-        starsAmount += 0.5;
       } else array.push(<BlankStar />);
       rating -= 2;
     }
-    setStarsCount(starsAmount);
     setStars(array);
   }, [rating]);
   return (
-      <Rating>
-          <div>
+    <Rating>
+      <div>
         {stars.map((star, i) => (
           <span key={i}>{star}</span>
         ))}
-        </div>
-        <div style={{fontSize: "18px", height: "26px"}}>{starsCount} / {maxStars}</div>
-      </Rating>
+      </div>
+    </Rating>
   );
 };
 

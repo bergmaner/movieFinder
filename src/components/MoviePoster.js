@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import StarRating from "./StarRating";
 
@@ -61,6 +62,7 @@ const Image = styled.img`
 
 const MoviePoster = ({ id }) => {
   const [movie, setMovie] = useState({});
+  const history = useHistory();
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=1a65d41cd57fab7537d17820063e63df`
@@ -69,10 +71,14 @@ const MoviePoster = ({ id }) => {
       .then((result) => {
         setMovie(result);
       });
-  }, []);
-  console.log("m", movie);
+  }, [id]);
+
+  const pushTo = (path) => {
+    history.push(path);
+  };
+
   return (
-    <Poster>
+    <Poster onClick={() => pushTo(`/movie/${id}`)}>
       <div>
         <Image src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} />
       </div>

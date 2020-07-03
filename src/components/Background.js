@@ -32,7 +32,6 @@ const Description = styled.div`
 `;
 
 const Background = ({ image, title, overview }) => {
-  console.log("im", image);
   return (
     <HeroHeader image={image}>
       <Description>

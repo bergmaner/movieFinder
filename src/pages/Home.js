@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Background from "./Background";
+import Background from "../components/Background";
 import MovieList from "../containers/MovieList"
 
 const Home = () => {
@@ -31,7 +31,7 @@ const Home = () => {
         }));
       });
   }, []);
-  console.log(data);
+
   return (
     <div>
       <Background
