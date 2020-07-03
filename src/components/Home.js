@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Background from "./Background";
+import MovieList from "../containers/MovieList"
+
 const Home = () => {
   const [data, setData] = useState({
     movies: [],
@@ -37,6 +39,7 @@ const Home = () => {
         title={data.backgroundImage.title}
         overview={data.backgroundImage.overview}
       />
+      <MovieList movies = {data.movies}/>
     </div>
   );
 };
