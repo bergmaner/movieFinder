@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components"
-import Movie from "../components/Movie";
+import MoviePoster from "../components/MoviePoster";
 
 const Header = styled.h1`
 font-size: 40px;
@@ -19,8 +19,8 @@ const MovieList = ({ movies }) => {
     <div>
         <Header>Popular Movies</Header>
         <MoviesContainer>
-      {movies.map((movie) => (
-        <Movie movie={movie} />
+      {movies.map((movie,i) => (
+        <MoviePoster key={i} id={movie.id} />
       ))}
       </MoviesContainer>
     </div>
