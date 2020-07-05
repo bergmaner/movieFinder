@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import StarRating from "./StarRating";
+import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE } from "../Config";
 
 const Card = styled.div`
   width: 100vw;
@@ -78,6 +79,20 @@ const ShortInfo = styled.div`
   flex-wrap: wrap;
 `;
 
+const Wrapper = styled.div`
+display: flex;
+margin: 0px 5px;
+height: 100px;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+`;
+
+const Image = styled.img`
+margin: 5px;
+max-height: 100%;
+`;
+
 const MovieCard = ({ image, movie }) => {
   console.log("mff", movie);
   return (
@@ -101,6 +116,13 @@ const MovieCard = ({ image, movie }) => {
         </ShortInfo>
         <StarRating rating={movie.vote_average} />
         <p>{movie.overview}</p>
+        <Wrapper>{movie?.production_companies?.map((company, i) => (
+             company.logo_path ? <Image src = {`${IMAGE_URL + LOGO_SIZE + company.logo_path}`}/> : null
+            ))}</Wrapper>
+              <Wrapper>{movie?.credits?.cast?.filter((actor,i)=> {return i < 5 ?  actor : null } ).map((actor, i) => (
+             actor.profile_path ? <Image circle src = {`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}/> : null
+            ))}</Wrapper>
+  
       </RightCard>
     </Card>
   );

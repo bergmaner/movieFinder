@@ -22,6 +22,9 @@ const SearchIcon = styled(MdSearch)`
   align-items: center;
 `;
 const SearchInput = styled.input`
+:focus{
+  width: 210px;
+}
 border: none;
 outline: none;
 cursor: text;
