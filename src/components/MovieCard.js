@@ -4,12 +4,13 @@ import StarRating from "./StarRating";
 
 const Card = styled.div`
   width: 100vw;
+  height:90vh;
   background: transparent;
   display: flex;
   box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
 `;
 const LeftCard = styled.div`
-  width: 30%;
+  width: 400px;
   overflow: hidden;
   margin: 0px;
   padding: 0px;
@@ -22,8 +23,7 @@ const LeftCard = styled.div`
   }
 `;
 const RightCard = styled.div`
-
-  width: 70%;
+  width: calc(100% - 300px);
   background: #333231;
   display: flex;
   flex-direction: column;
@@ -61,14 +61,22 @@ const RightCard = styled.div`
   }
 `;
 const Genres = styled.li`
-display: flex;
+  display: flex;
 `;
 const Genre = styled.div`
-display: inline-block;
-padding: 2px;
-border-right: 1px solid white;
+  display: inline-block;
+  padding: 7px;
+  border-right: ${(props) => (props.last ? "none" : "1px solid white")};
 `;
 
+const ShortInfo = styled.div`
+  width: 100%;
+  display: flex;
+  color: white;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+`;
 
 const MovieCard = ({ image, movie }) => {
   console.log("mff", movie);
@@ -80,15 +88,17 @@ const MovieCard = ({ image, movie }) => {
       <RightCard>
         {" "}
         <h1>{movie.title}</h1>
-        <ul>
-          <li>{movie.release_date}</li>
-          <li>{movie.runtime} min</li>
+        <ShortInfo>
+          <div>{movie.release_date}</div>
+          <div>{movie.runtime} min</div>
           <Genres>
-          {movie?.genres?.map((genre) => (
-            <Genre>{genre.name} </Genre>
-          ))}
+            {movie?.genres?.map((genre, i) => (
+              <Genre last={i === movie.genres.length - 1 ? true : false}>
+                {genre.name}{" "}
+              </Genre>
+            ))}
           </Genres>
-        </ul>
+        </ShortInfo>
         <StarRating rating={movie.vote_average} />
         <p>{movie.overview}</p>
       </RightCard>

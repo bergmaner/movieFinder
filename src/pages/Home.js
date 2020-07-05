@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { TMDB_URL, IMAGE_URL, API_KEY, BACKDROP_SIZE } from "../Config";
 import Background from "../components/Background";
-import MovieList from "../containers/MovieList"
+import MovieList from "../containers/MovieList";
 
 const Home = () => {
   const [data, setData] = useState({
@@ -17,7 +18,7 @@ const Home = () => {
       loading: true,
     }));
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=1a65d41cd57fab7537d17820063e63df&page=1`
+      `${TMDB_URL}movie/popular?api_key=${API_KEY}&page=1`
     )
       .then((result) => result.json())
       .then((result) => {
@@ -27,7 +28,7 @@ const Home = () => {
           loading: false,
           actualPage: result.page,
           totalPages: result.total_pages,
-          backgroundImage: result.results[2],
+          backgroundImage: data.backgroundImage || result.results[2],
         }));
       });
   }, []);
@@ -35,11 +36,11 @@ const Home = () => {
   return (
     <div>
       <Background
-        image={`https://image.tmdb.org/t/p/w1280_and_h720_bestv2${data.backgroundImage.backdrop_path}`}
+        image={`${IMAGE_URL + BACKDROP_SIZE + data.backgroundImage.backdrop_path}`}
         title={data.backgroundImage.title}
         overview={data.backgroundImage.overview}
       />
-      <MovieList movies = {data.movies}/>
+      <MovieList movies={data.movies} loading={data.loading} />
     </div>
   );
 };

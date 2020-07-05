@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
+import { Link } from "react-router-dom";
 
 const Header = styled.div`
   background: black;
@@ -19,12 +20,16 @@ font-family: "Montserrat", sans-serif;
   flex-grow: 1;
   display: flex;
   justify-content: flex-start;
+  a{
+    color: white;
+    text-decoration: none;
+  }
 `;
 
 const Navbar = () => {
   return (
     <Header>
-      <Title>Movie Finder</Title>
+      <Title><Link to="/">Movie Finder</Link></Title>
       <div>
        <Searchbar/>
       </div>

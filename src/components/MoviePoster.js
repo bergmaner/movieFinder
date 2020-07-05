@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { IMAGE_URL, POSTER_SIZE } from "../Config";
 import StarRating from "./StarRating";
 
 const Details = styled.div`
@@ -17,6 +18,7 @@ const Details = styled.div`
 const Poster = styled.div`
   margin: 20px;
   cursor: pointer;
+  background: white;
   position: relative;
   overflow: hidden;
   box-shadow: 0px 5px 10x rgba(0, 0, 0);
@@ -55,32 +57,24 @@ const Title = styled.div`
 `;
 const Overview = styled.div`
   font-size: 13px;
+  text-align: left;
+  padding: 0px 7px;
 `;
 const Image = styled.img`
   transition: all 0.4s;
 `;
 
-const MoviePoster = ({ id }) => {
-  const [movie, setMovie] = useState({});
+const MoviePoster = ({ movie }) => {
   const history = useHistory();
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=1a65d41cd57fab7537d17820063e63df`
-    )
-      .then((result) => result.json())
-      .then((result) => {
-        setMovie(result);
-      });
-  }, [id]);
 
   const pushTo = (path) => {
     history.push(path);
   };
 
   return (
-    <Poster onClick={() => pushTo(`/movie/${id}`)}>
+    <Poster onClick={() => pushTo(`/movie/${movie.id}`)}>
       <div>
-        <Image src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`} />
+        <Image src={`${IMAGE_URL + POSTER_SIZE + movie.poster_path}`} />
       </div>
       <Details>
         <Header>
