@@ -5,13 +5,15 @@ import MoviePoster from "../components/MoviePoster";
 const Header = styled.h1`
   font-size: 40px;
   margin: 0px;
-  padding: 30px;
+  padding: 39px;
   color: white;
 `;
 
 const MoviesContainer = styled.div`
+  background: #333231;
   display: flex;
   flex-wrap: wrap;
+  min-height: 200px;
   justify-content: center;
   padding: 0px 15px;
 `;
@@ -21,15 +23,18 @@ const Container = styled.div`
 `;
 
 const MovieList = ({ movies, loading }) => {
+  console.log("load",loading, movies)
   return (
     <Container>
-      <Header>Popular Movies</Header>
       {loading ? (
+        <>
         <div>Loading...</div>
+        <MoviesContainer></MoviesContainer>
+        </>
       ) : (
         <MoviesContainer>
-          {movies.map((movie, i) => (
-            <MoviePoster key={i} movie={movie} />
+          {movies?.map((movie, i) => (
+           movie.poster_path ? <MoviePoster key={i} movie={movie} /> : null 
           ))}
         </MoviesContainer>
       )}

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
+import { TMDB_URL, API_KEY } from "../Config";
 
 const SearchBar = styled.div`
-  background: rgba(150,150,150,0.8);
+  background: rgba(150, 150, 150, 0.8);
   height: 40px;
   border-radius: 40px;
   padding: 10px;
-  :hover > input{
-      width: 210px;
+  :hover > input {
+    width: 210px;
   }
 `;
 const SearchIcon = styled(MdSearch)`
@@ -22,26 +23,47 @@ const SearchIcon = styled(MdSearch)`
   align-items: center;
 `;
 const SearchInput = styled.input`
-:focus{
-  width: 210px;
-}
-border: none;
-outline: none;
-cursor: text;
-padding: 0px;
-background: none;
-color: black;
-font-size: 30px;
-line-height: 40px;
-transition: width 0.4s;
-width: 0px;`;
+  :focus {
+    width: 210px;
+  }
+  border: none;
+  outline: none;
+  cursor: text;
+  padding: 0px;
+  background: none;
+  color: black;
+  font-size: 30px;
+  line-height: 40px;
+  transition: width 0.4s;
+  width: 0px;
+`;
 
-const Searchbar = () =>{
-    return(
-        <SearchBar>
-        <SearchInput />
-        <SearchIcon />
-      </SearchBar>
-    )
-}
+const Searchbar = ({state,dispatch}) => {
+  
+  
+  useEffect(() => {
+    const fetchMovies = async () => {
+      if(state.searchQuery !== ""){
+      fetch(`${TMDB_URL}search/movie?api_key=${API_KEY}&query=${state.searchQuery}`)
+        .then((result) => result.json())
+        .then((result) => {
+            dispatch({
+              type: "SEARCH_MOVIES",
+              payload: result,
+            });
+        });
+      }
+    };
+    fetchMovies();
+  }, [state.searchQuery]);
+  return (
+    <SearchBar>
+      <SearchInput onChange={(e) =>  dispatch({
+        type: "MOVIES_REQUEST",
+        payload: e.target.value
+      })} />
+      <SearchIcon />
+    </SearchBar>
+  );
+};
 export default Searchbar;

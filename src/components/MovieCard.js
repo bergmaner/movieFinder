@@ -82,15 +82,14 @@ const ShortInfo = styled.div`
 const Wrapper = styled.div`
 display: flex;
 margin: 0px 5px;
-height: 100px;
 justify-content: center;
 align-items: center;
-flex-wrap: wrap;
+flex-wrap:wrap;
 `;
 
 const Image = styled.img`
 margin: 5px;
-max-height: 100%;
+max-height: 100px;
 `;
 
 const MovieCard = ({ image, movie }) => {
@@ -117,10 +116,10 @@ const MovieCard = ({ image, movie }) => {
         <StarRating rating={movie.vote_average} />
         <p>{movie.overview}</p>
         <Wrapper>{movie?.production_companies?.map((company, i) => (
-             company.logo_path ? <Image src = {`${IMAGE_URL + LOGO_SIZE + company.logo_path}`}/> : null
+             company.logo_path ? <Image key={i} src = {`${IMAGE_URL + LOGO_SIZE + company.logo_path}`}/> : null
             ))}</Wrapper>
               <Wrapper>{movie?.credits?.cast?.filter((actor,i)=> {return i < 5 ?  actor : null } ).map((actor, i) => (
-             actor.profile_path ? <Image circle src = {`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}/> : null
+             actor.profile_path ? <Image key={i} circle src = {`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}/> : null
             ))}</Wrapper>
   
       </RightCard>
