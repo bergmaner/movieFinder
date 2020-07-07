@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {breakpoint} from "../helpers/mediaQueries";
 
 const HeroHeader = styled.div`
   width: 100vw;
@@ -26,6 +27,9 @@ const HeroHeader = styled.div`
 const Description = styled.div`
   background: rgba(0, 0, 0, 0.6);
   padding: 10px 30px;
+  @media ${breakpoint.sm}{
+    height: 100%;
+  }
   div {
     text-align: left;
   }

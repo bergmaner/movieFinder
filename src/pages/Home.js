@@ -32,7 +32,7 @@ const Home = ({ data, dispatch }) => {
         title={data.backgroundImage.title}
         overview={data.backgroundImage.overview}
       />
-      <MovieList movies={data.movies} loading={data.loading} />
+      <MovieList data={data} />
     </div>
   );
 };

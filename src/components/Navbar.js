@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import { Link } from "react-router-dom";
+import { breakpoint } from "../helpers/mediaQueries";
 
 const Header = styled.div`
   position: sticky;
@@ -24,6 +25,9 @@ const Title = styled.div`
   flex-grow: 1;
   display: flex;
   justify-content: flex-start;
+@media ${breakpoint.sm}{
+  font-size:24px;
+}
   a {
     color: white;
     text-decoration: none;

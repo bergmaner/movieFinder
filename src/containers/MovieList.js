@@ -1,14 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import MoviePoster from "../components/MoviePoster";
 import Spinner from "../components/Spinner";
-
-const Header = styled.h1`
-  font-size: 40px;
-  margin: 0px;
-  padding: 39px;
-  color: white;
-`;
 
 const MoviesContainer = styled.div`
   background: #333231;
@@ -23,17 +16,17 @@ const Container = styled.div`
   background: #333231;
 `;
 
-const MovieList = ({ movies, loading }) => {
-  console.log("load", loading, movies);
+const MovieList = ({ data }) => {
+  console.log("load", data.loading, data.movies);
   return (
     <Container>
-      {loading ? (
+      {data.loading && data.searchQuery !=="" ? (
         <MoviesContainer>
           <Spinner />
         </MoviesContainer>
       ) : (
         <MoviesContainer>
-          {movies?.map((movie, i) =>
+          {data.movies?.map((movie, i) =>
             movie.poster_path ? <MoviePoster key={i} movie={movie} /> : null
           )}
         </MoviesContainer>

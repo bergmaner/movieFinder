@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
 import { TMDB_URL, API_KEY } from "../Config";
+import {breakpoint} from "../helpers/mediaQueries";
 
 const SearchBar = styled.div`
   background: rgba(150, 150, 150, 0.8);
@@ -10,6 +11,9 @@ const SearchBar = styled.div`
   padding: 10px;
   :hover > input {
     width: 210px;
+    @media ${breakpoint.sm}{
+      width:130px;
+    }
   }
 `;
 const SearchIcon = styled(MdSearch)`
@@ -25,6 +29,9 @@ const SearchIcon = styled(MdSearch)`
 const SearchInput = styled.input`
   :focus {
     width: 210px;
+    @media ${breakpoint.sm}{
+      width:130px;
+    }
   }
   border: none;
   outline: none;

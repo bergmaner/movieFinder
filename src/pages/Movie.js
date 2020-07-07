@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import { TMDB_URL, API_KEY, IMAGE_URL, MOVIE_CARD_SIZE,BACKDROP_SIZE } from "../Config";
