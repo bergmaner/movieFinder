@@ -21,10 +21,10 @@ const BlankStar = styled(BsStar)`
 `;
 const Rating = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: ${props => props.justifyContent || "center"};
   align-items: center;
 `;
-const StarRating = ({ rating }) => {
+const StarRating = ({ justifyContent, rating }) => {
   const [stars, setStars] = useState([]);
   const maxStars = 5;
   useEffect(() => {
@@ -40,7 +40,7 @@ const StarRating = ({ rating }) => {
     setStars(array);
   }, [rating]);
   return (
-    <Rating>
+    <Rating justifyContent={justifyContent}>
       <div>
         {stars.map((star, i) => (
           <span key={i}>{star}</span>

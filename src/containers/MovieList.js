@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import MoviePoster from "../components/MoviePoster";
+import Spinner from "../components/Spinner";
 
 const Header = styled.h1`
   font-size: 40px;
@@ -23,19 +24,18 @@ const Container = styled.div`
 `;
 
 const MovieList = ({ movies, loading }) => {
-  console.log("load",loading, movies)
+  console.log("load", loading, movies);
   return (
     <Container>
       {loading ? (
-        <>
-        <div>Loading...</div>
-        <MoviesContainer></MoviesContainer>
-        </>
+        <MoviesContainer>
+          <Spinner />
+        </MoviesContainer>
       ) : (
         <MoviesContainer>
-          {movies?.map((movie, i) => (
-           movie.poster_path ? <MoviePoster key={i} movie={movie} /> : null 
-          ))}
+          {movies?.map((movie, i) =>
+            movie.poster_path ? <MoviePoster key={i} movie={movie} /> : null
+          )}
         </MoviesContainer>
       )}
     </Container>
