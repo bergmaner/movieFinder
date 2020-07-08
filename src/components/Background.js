@@ -29,6 +29,9 @@ const Description = styled.div`
   padding: 10px 30px;
   @media ${breakpoint.sm}{
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
   div {
     text-align: left;
