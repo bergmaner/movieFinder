@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import StarRating from "./StarRating";
 import Spinner from "./Spinner";
+import Slider from "./Slider";
+import Item from "./Item";
 import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE } from "../Config";
 import { breakpoint } from "../helpers/mediaQueries";
 
@@ -29,7 +31,7 @@ const LeftCard = styled.div`
   }
 `;
 const RightCard = styled.div`
-  width: calc(100% - 300px);
+width: calc(100vw - 474px);
   background: #333231;
   display: flex;
   flex-direction: column;
@@ -162,21 +164,13 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
                 ) : null
               )}
             </Wrapper>
-            <Wrapper>
-              {movie?.credits?.cast
-                ?.filter((actor, i) => {
-                  return i < 5 ? actor : null;
-                })
-                .map((actor, i) =>
+            <Slider>{movie?.credits?.cast?.map((actor, i) =>
                   actor.profile_path ? (
-                    <Image
-                      key={i}
-                      circle
-                      src={`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}
+                   <Item
+                      image={`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}
                     />
                   ) : null
-                )}
-            </Wrapper>
+                )}</Slider>
           </RightCard>
         </Card>
       )}
