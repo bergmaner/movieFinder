@@ -3,13 +3,13 @@ import styled from "styled-components";
 import StarRating from "./StarRating";
 import Spinner from "./Spinner";
 import Slider from "./Slider";
-import Item from "./Item";
+import SlideItem from "./SlideItem";
 import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE } from "../Config";
 import { breakpoint } from "../helpers/mediaQueries";
 
 const Card = styled.div`
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
   background: #333231;
   display: flex;
   box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
@@ -19,7 +19,7 @@ const Card = styled.div`
   }
 `;
 const LeftCard = styled.div`
-  width: 400px;
+  width: 342px;
   height: 100% !important;
   margin: 0px;
   padding: 0px;
@@ -31,7 +31,8 @@ const LeftCard = styled.div`
   }
 `;
 const RightCard = styled.div`
-width: calc(100vw - 474px);
+width: calc(100vw - 342px);
+box-sizing: border-box;
   background: #333231;
   display: flex;
   flex-direction: column;
@@ -125,7 +126,7 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
   return (
     <div>
       {loading ? (
-        <Card>
+        <Card style={{display: "flex", justifyContent: "center"}}>
           <Spinner />
         </Card>
       ) : (
@@ -166,7 +167,7 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
             </Wrapper>
             <Slider>{movie?.credits?.cast?.map((actor, i) =>
                   actor.profile_path ? (
-                   <Item
+                   <SlideItem
                       image={`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}
                     />
                   ) : null

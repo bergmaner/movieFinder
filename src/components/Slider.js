@@ -1,10 +1,7 @@
 import React, { useState, Children } from "react";
 import styled from "styled-components";
-import { IMAGE_URL, PROFILE_SIZE } from "../Config";
 import SlideButton from "./SlideButton";
 import useSliding from "../hooks/useSliding.js";
-import useSizeElement from "../hooks/useSizeElement";
-import SliderContext from "./context";
 
 const SliderWrapper = styled.div`
   height: 68px;
@@ -21,7 +18,6 @@ width: 100%;
 `;
 
 const Slider = ({ children }) => {
-  const { width, elementRef } = useSizeElement();
   const {
     handlePrev,
     handleNext,
@@ -29,15 +25,9 @@ const Slider = ({ children }) => {
     containerRef,
     hasNext,
     hasPrev,
-  } = useSliding(width, Children.count(children));
-
-
-  const contextValue = {
-    elementRef,
-  };
+  } = useSliding(49, Children.count(children?.filter((element)=> {if(element!=null) return element})));
 
   return (
-    <SliderContext.Provider value={contextValue}>
     <SliderWrapper>
       <div>
         <Container ref={containerRef} {...slideProps}>
@@ -47,7 +37,6 @@ const Slider = ({ children }) => {
       {hasPrev && <SlideButton onClick={handlePrev} type="prev" />}
         {hasNext && <SlideButton onClick={handleNext} type="next" />}
       </SliderWrapper>
-      </SliderContext.Provider>
   );
 };
 

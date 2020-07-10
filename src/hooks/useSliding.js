@@ -1,39 +1,39 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from "react";
 
 const useSliding = (elementWidth, countElements) => {
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const [distance, setDistance] = useState(0);
-  const [totalInViewport, setTotalInViewport] = useState(0)
+  const [totalInViewport, setTotalInViewport] = useState(0);
   const [viewed, setViewed] = useState(0);
-
+  const [hasPrev, setHasPrev] = useState(false);
+  const [hasNext, setHasNext] = useState(true);
   useEffect(() => {
     const containerWidth = containerRef.current.clientWidth;
-
+    if(((containerWidth / elementWidth)) >= countElements) setHasNext(false);
     setContainerWidth(containerWidth);
     setTotalInViewport(Math.floor(containerWidth / elementWidth));
   }, [containerRef.current]);
 
   const handlePrev = () => {
+      setHasNext(true);
+      if(distance + containerWidth >= 0)setHasPrev(false)
     setViewed(viewed - totalInViewport);
     setDistance(distance + containerWidth);
-  }
-
-  const handleNext = () => {
-    console.log(`viewed ${viewed} totalInViewport ${totalInViewport} countElements ${countElements}`)
-    setViewed(viewed + totalInViewport);
-    setDistance(distance - containerWidth)
-  
-  }
-
-  const slideProps = {
-    style: { transform: `translate3d(${distance}px, 0, 0)` }
   };
 
-  const hasPrev = distance < 0;
-  const hasNext = (viewed + totalInViewport) < countElements;
+  const handleNext = () => {
+   setHasPrev(true);
+    if( viewed + (2*totalInViewport) >= countElements) setHasNext(false);
+    setViewed(viewed + totalInViewport);
+    setDistance(distance - containerWidth);
+  };
+
+  const slideProps = {
+    style: { transform: `translate3d(${distance}px, 0, 0)` },
+  };
 
   return { handlePrev, handleNext, slideProps, containerRef, hasPrev, hasNext };
-}
+};
 
 export default useSliding;

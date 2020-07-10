@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import SliderContext from "./context";
 
 const Image = styled.img`
 max-height: 100px;
@@ -13,17 +12,11 @@ transition: transform 300ms ease 100ms;
 `;
 
 
-const Item = ({image}) => {
-    return(
-<SliderContext.Consumer>
-    {({ elementRef }) => {
+const SlideItem = ({image}) => {
       return (
-          <div onClick={()=>console.log("tt")}ref={elementRef}>
+          <div style ={{boxSizing:"border-box"}}onClick={()=>console.log("tt")}>
           <Image src={image} alt="" />
           </div>
       );
-    }}
-  </SliderContext.Consumer>
-    )
 }
-export default Item;
+export default SlideItem;

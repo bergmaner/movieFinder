@@ -8,7 +8,7 @@ top: 0;
 bottom: 0;
 right: ${props => props.type === "next" ? "0" : ""};
 left: ${props => props.type === "prev" ? "0" : ""};
-width: 45px;
+width: 20px;
 height: 100%;
 background: rgba(0, 0, 0, 0.5);
 border: 0;
