@@ -35,7 +35,6 @@ const Title = styled.div`
 `;
 
 const Navbar = ({ state, dispatch }) => {
-  console.log("state", state);
   return (
     <Header>
       <Title>

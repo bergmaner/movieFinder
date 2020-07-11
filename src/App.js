@@ -13,7 +13,7 @@ const App = () => {
     movies: [],
     backgroundImage: "",
     loading: false,
-    actualPage: 0,
+    actualPage: 1,
     totalPages: 0,
     searchQuery: "",
   };

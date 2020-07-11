@@ -18,7 +18,7 @@ const Movie = () => {
         setMovie(result);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
   console.log("m", movie.backdrop_path);
   return (
     <div>

@@ -16,6 +16,7 @@ const Details = styled.div`
 `;
 
 const Poster = styled.div`
+min-width: 185px;
   margin: 20px;
   cursor: pointer;
   background: white;

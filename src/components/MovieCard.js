@@ -122,11 +122,10 @@ const Title = styled.h1`
 `;
 
 const MovieCard = ({ loading, poster, backdrop, movie }) => {
-  console.log("mff", movie);
   return (
     <div>
       {loading ? (
-        <Card style={{display: "flex", justifyContent: "center"}}>
+        <Card style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
           <Spinner />
         </Card>
       ) : (

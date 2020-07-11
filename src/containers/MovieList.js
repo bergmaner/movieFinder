@@ -17,7 +17,6 @@ const Container = styled.div`
 `;
 
 const MovieList = ({ data }) => {
-  console.log("load", data.loading, data.movies);
   return (
     <Container>
       {data.loading && data.searchQuery !=="" ? (
