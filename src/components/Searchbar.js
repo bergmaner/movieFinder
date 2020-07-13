@@ -20,7 +20,7 @@ const SearchBar = styled.div`
 const SearchIcon = styled(MdSearch)`
 cursor: pointer;
   float: right;
-  color: black;
+  color: white;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -40,7 +40,7 @@ const SearchInput = styled.input`
   cursor: text;
   padding: 0px;
   background: none;
-  color: black;
+  color: white;
   font-size: 30px;
   line-height: 40px;
   transition: width 0.4s;
@@ -110,6 +110,10 @@ const pushTo = (path) => {
 
 
   const handleClick = () =>{
+
+    if(history.location.pathname !== "/"){
+      history.push("/")
+    }
     if (state.searchQuery !== "") {
       
       fetch(
@@ -155,6 +159,7 @@ useEffect(()=>{
     }
   }
   console.log(onList)
+  console.log("his",history);
   return (
     <div >
       <SearchBar>

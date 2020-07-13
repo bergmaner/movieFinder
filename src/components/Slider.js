@@ -4,7 +4,7 @@ import SlideButton from "./SlideButton";
 import useSliding from "../hooks/useSliding.js";
 
 const SliderWrapper = styled.div`
-  height: 68px;
+height: ${props=> props.height};
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -17,7 +17,7 @@ z-index: 3;
 width: 100%;
 `;
 
-const Slider = ({ children }) => {
+const Slider = ({ children, height }) => {
   const {
     handlePrev,
     handleNext,
@@ -28,7 +28,7 @@ const Slider = ({ children }) => {
   } = useSliding(49, Children.count(children?.filter((element)=> {if(element!=null) return element})));
 
   return (
-    <SliderWrapper>
+    <SliderWrapper height={height}>
       <div>
         <Container ref={containerRef} {...slideProps}>
            {children}

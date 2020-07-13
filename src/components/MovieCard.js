@@ -7,7 +7,7 @@ import SlideItem from "./SlideItem";
 import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE } from "../Config";
 import { breakpoint } from "../helpers/mediaQueries";
 
-const Card = styled.div`
+export const Card = styled.div`
   width: 100%;
   min-height: 90vh;
   background: #333231;
@@ -18,7 +18,7 @@ const Card = styled.div`
     height: auto;
   }
 `;
-const LeftCard = styled.div`
+export const LeftCard = styled.div`
   width: 342px;
   height: 100% !important;
   margin: 0px;
@@ -30,7 +30,7 @@ const LeftCard = styled.div`
     overflow: hidden;
   }
 `;
-const RightCard = styled.div`
+export const RightCard = styled.div`
 width: calc(100vw - 342px);
 box-sizing: border-box;
   background: #333231;
@@ -45,6 +45,7 @@ box-sizing: border-box;
     box-sizing: border-box;
   }
 `;
+
 const Genres = styled.li`
   display: flex;
 `;
@@ -164,9 +165,10 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
                 ) : null
               )}
             </Wrapper>
-            <Slider>{movie?.credits?.cast?.map((actor, i) =>
+            <Slider height="68px">{movie?.credits?.cast?.map((actor, i) =>
                   actor.profile_path ? (
                    <SlideItem
+                      path={`/actor/${actor.id}`}
                       image={`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}
                     />
                   ) : null
