@@ -32,7 +32,6 @@ const Home = ({ data, dispatch }) => {
         fetchMovies();
       }
   },[data.actualPage]);
-  console.log("home", data);
   return (
     <Container>
       <Background

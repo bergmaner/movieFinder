@@ -14,7 +14,7 @@ transition: transform 300ms ease 100ms;
 
 const SlideItem = ({image,path}) => {
       return (
-          <Link to={path}><div style ={{boxSizing:"border-box"}}onClick={()=>console.log("tt")}>
+          <Link to={path}><div style ={{boxSizing:"border-box"}}>
           <Image src={image} alt="" />
           </div>
           </Link>

@@ -1,4 +1,4 @@
-import React, { useState, Children } from "react";
+import React, { Children } from "react";
 import styled from "styled-components";
 import SlideButton from "./SlideButton";
 import useSliding from "../hooks/useSliding.js";

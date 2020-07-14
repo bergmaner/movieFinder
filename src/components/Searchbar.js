@@ -10,6 +10,9 @@ const SearchBar = styled.div`
   height: 40px;
   border-radius: 40px;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   :hover > input {
     width: 210px;
     @media ${breakpoint.sm} {
@@ -18,15 +21,12 @@ const SearchBar = styled.div`
   }
 `;
 const SearchIcon = styled(MdSearch)`
-cursor: pointer;
+  cursor: pointer;
   float: right;
   color: white;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 const SearchInput = styled.input`
   :focus {
@@ -58,8 +58,9 @@ const List = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  display: ${props=> props.focus && props.searchQuery !== "" ? "flex" : "none"};
- 
+  display: ${(props) =>
+    props.focus && props.searchQuery !== "" ? "flex" : "none"};
+
   @media ${breakpoint.sm} {
     width: 150px;
   }
@@ -88,34 +89,33 @@ const Searchbar = ({ state, dispatch }) => {
   const [onList, setOnList] = useState(false);
   let history = useHistory();
 
-const pushTo = (path) => {
-  history.push(path);
-}
+  const pushTo = (path) => {
+    history.push(path);
+  };
 
   useEffect(() => {
     const fetchMovies = async () => {
-      if(state.searchQuery !== ""){
-        fetch(`${TMDB_URL}search/movie?api_key=${API_KEY}&query=${state.searchQuery}`)
-        .then((result) => result.json())
-        .then((result) => {
+      if (state.searchQuery !== "") {
+        fetch(
+          `${TMDB_URL}search/movie?api_key=${API_KEY}&query=${state.searchQuery}`
+        )
+          .then((result) => result.json())
+          .then((result) => {
             dispatch({
               type: "DISPLAY_RESULTS",
               payload: result,
             });
-        });
+          });
       }
     };
     fetchMovies();
   }, [state.searchQuery]);
 
-
-  const handleClick = () =>{
-
-    if(history.location.pathname !== "/"){
-      history.push("/")
+  const handleClick = () => {
+    if (history.location.pathname !== "/") {
+      history.push("/");
     }
     if (state.searchQuery !== "") {
-      
       fetch(
         `${TMDB_URL}search/movie?api_key=${API_KEY}&query=${state.searchQuery}&page=${state.actualPage}`
       )
@@ -129,57 +129,72 @@ const pushTo = (path) => {
     }
   };
 
-useEffect(()=>{
-  if (state.searchQuery !== "") {
-      
-    fetch(
-      `${TMDB_URL}search/movie?api_key=${API_KEY}&query=${state.searchQuery}&page=${state.actualPage}`
-    )
-      .then((result) => result.json())
-      .then((result) => {
-        result.results = [...state.movies, ...result.results];
-        dispatch({
-          type: "SEARCH_MOVIES",
-          payload: result,
+  useEffect(() => {
+    if (state.searchQuery !== "") {
+      fetch(
+        `${TMDB_URL}search/movie?api_key=${API_KEY}&query=${state.searchQuery}&page=${state.actualPage}`
+      )
+        .then((result) => result.json())
+        .then((result) => {
+          result.results = [...state.movies, ...result.results];
+          dispatch({
+            type: "SEARCH_MOVIES",
+            payload: result,
+          });
         });
-      });
-  }
-},[state.actualPage])
+    }
+  }, [state.actualPage]);
 
-  const handleFocus = () =>{
-    if(state.searchQuery !== "")
-    {
+  const handleFocus = () => {
+    if (state.searchQuery !== "") {
       setFocus(true);
     }
-  }
-  const handleFocusOut = () =>{
-    if(onList === false)
-    {
+  };
+  const handleFocusOut = () => {
+    if (onList === false) {
       setFocus(false);
     }
-  }
-  console.log(onList)
-  console.log("his",history);
+  };
   return (
-    <div >
-      <SearchBar>
-        <SearchInput
-        onFocus={ () => handleFocus()}
-        onBlur={ () => handleFocusOut()}
-          onChange={(e) =>(
-            setFocus(true),
-            dispatch({
-              type: "MOVIES_REQUEST",
-              payload: e.target.value,
-            }))
-          }
-        />
-        <SearchIcon onClick={handleClick}/>
-      </SearchBar>
-      <List onMouseEnter={()=>setOnList(true)} onMouseLeave={()=>setOnList(false)} searchQuery={state.searchQuery} focus={focus} >
+    <div>
+      <form onSubmit={handleClick}>
+        <SearchBar>
+          <SearchInput
+            onFocus={() => handleFocus()}
+            onBlur={() => handleFocusOut()}
+            onChange={(e) => (
+              setFocus(true),
+              dispatch({
+                type: "MOVIES_REQUEST",
+                payload: e.target.value,
+              })
+            )}
+          />
+          <button
+            style={{
+              background: "transparent",
+              outline: "none",
+              border: "none",
+              padding: "0px",
+            }}
+          >
+            <SearchIcon />
+          </button>
+        </SearchBar>
+      </form>
+      <List
+        onMouseEnter={() => setOnList(true)}
+        onMouseLeave={() => setOnList(false)}
+        searchQuery={state.searchQuery}
+        focus={focus}
+      >
         {state?.results?.map((movie) => (
-            <ListItem onClick={() => (setFocus(false),pushTo(`/movie/${movie.id}`))}>{movie.title}</ListItem>
-          ))}
+          <ListItem
+            onClick={() => (setFocus(false), pushTo(`/movie/${movie.id}`))}
+          >
+            {movie.title}
+          </ListItem>
+        ))}
       </List>
     </div>
   );

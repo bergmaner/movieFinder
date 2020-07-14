@@ -14,12 +14,10 @@ const Movie = () => {
     )
       .then((result) => result.json())
       .then((result) => {
-        console.log(result);
         setMovie(result);
         setLoading(false);
       });
   }, [id]);
-  console.log("m", movie.backdrop_path);
   return (
     <div>
         <MovieCard loading={loading} movie={movie} poster={`${IMAGE_URL + MOVIE_CARD_SIZE + movie.poster_path}`} backdrop={`${IMAGE_URL + BACKDROP_SIZE + movie.backdrop_path}`}/>

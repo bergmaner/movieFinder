@@ -4,7 +4,7 @@ import {breakpoint} from "../helpers/mediaQueries";
 import Spinner from "../components/Spinner";
 import Slider from "../components/Slider";
 import SlideItem from "./SlideItem";
-import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE, POSTER_SIZE } from "../Config";
+import { IMAGE_URL } from "../Config";
 
 const Poster = styled.img`
 @media${breakpoint.sm}{
