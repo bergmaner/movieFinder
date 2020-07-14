@@ -4,7 +4,7 @@ import StarRating from "./StarRating";
 import Spinner from "./Spinner";
 import Slider from "./Slider";
 import SlideItem from "./SlideItem";
-import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE } from "../Config";
+import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE } from "../config";
 import { breakpoint } from "../helpers/mediaQueries";
 
 export const Card = styled.div`

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import MoviePoster from "../components/MoviePoster";
-import Spinner from "../components/Spinner";
+import MoviePoster from "./MoviePoster";
+import Spinner from "./Spinner";
 
 const MoviesContainer = styled.div`
   background: #333231;

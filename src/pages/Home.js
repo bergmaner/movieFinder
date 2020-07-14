@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { TMDB_URL, IMAGE_URL, API_KEY, BACKDROP_SIZE } from "../Config";
+import { TMDB_URL, IMAGE_URL, API_KEY, BACKDROP_SIZE } from "../config";
 import Background from "../components/Background";
 import Button from "../components/Button";
-import MovieList from "../containers/MovieList";
+import MovieList from "../components/MovieList";
 
 const Container = styled.div`
 background: #333231;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { IMAGE_URL, POSTER_SIZE } from "../Config";
+import { IMAGE_URL, POSTER_SIZE } from "../config";
 import StarRating from "./StarRating";
 
 const Details = styled.div`

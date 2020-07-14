@@ -4,7 +4,7 @@ import {breakpoint} from "../helpers/mediaQueries";
 import Spinner from "../components/Spinner";
 import Slider from "../components/Slider";
 import SlideItem from "./SlideItem";
-import { IMAGE_URL } from "../Config";
+import { IMAGE_URL } from "../config";
 
 const Poster = styled.img`
 @media${breakpoint.sm}{
@@ -84,45 +84,6 @@ const ActorCard = ({ loading, poster, backdrop, actor }) =>{
                 <h1>Biography</h1>
                 <p>{actor.biography}</p>
             </Biography>
-          {/* <RightCard>
-          {/* */}
-            {" "}
-            {/* <div>{movie.title}</div> */}
-            <div>
-              {/* <div>{movie.release_date}</div>
-              <div>{movie.runtime} min</div> */}
-              {/* <div>
-                {movie?.genres?.map((genre, i) => (
-                  <div last={i === movie.genres.length - 1 ? true : false}>
-                    {genre.name}{" "}
-                  </div>
-                ))}
-              </div> */}
-            </div>
-            {/* <StarRating
-              justifyContent="flex-start"
-              rating={movie.vote_average}
-            /> */}
-            {/* <Overview>{movie.overview}</Overview> */}
-            {/* <div>
-              {movie?.production_companies?.map((company, i) =>
-                company.logo_path ? (
-                  <img
-                  size = {"40px"}
-                    key={i}
-                    src={`${IMAGE_URL + LOGO_SIZE + company.logo_path}`}
-                  />
-                ) : null
-              )}
-            </div> */}
-            {/* <Slider>{movie?.credits?.cast?.map((actor, i) =>
-                  actor.profile_path ? (
-                   <SlideItem
-                      image={`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}
-                    />
-                  ) : null
-                )}</Slider>
-          </RightCard> */}
         </Card>
       )}
         </div>

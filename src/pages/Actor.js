@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ActorCard from "../components/ActorCard";
-import { TMDB_URL, API_KEY, IMAGE_URL } from "../Config";
+import { TMDB_URL, API_KEY, IMAGE_URL } from "../config";
 
 const Actor = () => {
   const { id } = useParams();

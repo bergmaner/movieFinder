@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
 import Actor from "./pages/Actor";
-import { reducer } from "./reducer";
+import { reducer } from "./store/reducer";
 import "./App.css";
 
 const MoviesContext = createContext(null);

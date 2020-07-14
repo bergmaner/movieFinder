@@ -12,7 +12,7 @@ const LoadingContainer = styled.div`
 const Spinner = () =>{
     return(
 <LoadingContainer>
-<img src={require('../Spinner.svg')} />
+<img src={require('../assets/images/Spinner.svg')} />
 </LoadingContainer>
     )
 }

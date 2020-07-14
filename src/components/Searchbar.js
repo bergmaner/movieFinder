@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
-import { TMDB_URL, API_KEY } from "../Config";
+import { TMDB_URL, API_KEY } from "../config";
 import { breakpoint } from "../helpers/mediaQueries";
 
 const SearchBar = styled.div`
