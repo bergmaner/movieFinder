@@ -6,7 +6,7 @@ import StarRating from "./StarRating";
 
 const Details = styled.div`
   position: absolute;
-  bottom: -57%;
+  transform: translateY(-34%);
   left: 0px;
   width: 100%;
   height: 84%;
@@ -24,10 +24,10 @@ min-width: 185px;
   overflow: hidden;
   box-shadow: 0px 5px 10x rgba(0, 0, 0);
   :hover:before {
-    bottom: 0px;
+    transform: translateY(29%);
   }
   :hover ${Details} {
-    bottom: 0px;
+    transform: translateY(-85%);
   }
   :hover img {
     filter: blur(5px);
@@ -35,7 +35,7 @@ min-width: 185px;
   :before {
     content: "";
     position: absolute;
-    bottom: -57%;
+    transform: translateY(87%);
     overflow: hidden;
     left: 0;
     width: 100%;
@@ -64,6 +64,7 @@ const Overview = styled.div`
 const Image = styled.img`
   transition: all 0.4s;
 `;
+
 
 const MoviePoster = ({ movie }) => {
   const history = useHistory();
