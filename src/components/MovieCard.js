@@ -4,10 +4,11 @@ import StarRating from "./StarRating";
 import Spinner from "./Spinner";
 import Slider from "./Slider";
 import SlideItem from "./SlideItem";
-import { IMAGE_URL, LOGO_SIZE, PROFILE_SIZE } from "../config";
+import { IMAGE_URL, LOGO_SIZE, POSTER_SIZE } from "../config";
 import { breakpoint } from "../helpers/mediaQueries";
 
-export const Card = styled.div`
+
+const Card = styled.div`
   width: 100%;
   min-height: 90vh;
   background: #333231;
@@ -18,7 +19,7 @@ export const Card = styled.div`
     height: auto;
   }
 `;
-export const LeftCard = styled.div`
+const LeftCard = styled.div`
   width: 342px;
   height: 100% !important;
   margin: 0px;
@@ -30,8 +31,8 @@ export const LeftCard = styled.div`
     overflow: hidden;
   }
 `;
-export const RightCard = styled.div`
-width: calc(100vw - 342px);
+const RightCard = styled.div`
+width: calc(100vw - 362px);
 box-sizing: border-box;
   background: #333231;
   display: flex;
@@ -165,16 +166,17 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
                 ) : null
               )}
             </Wrapper>
-            <Slider height="68px">{movie?.credits?.cast?.map((actor, i) =>
+            <Slider>{movie?.credits?.cast?.map((actor, i) =>
                   actor.profile_path ? (
                    <SlideItem
                       path={`/actor/${actor.id}`}
-                      image={`${IMAGE_URL + PROFILE_SIZE + actor.profile_path}`}
+                      image={`${IMAGE_URL + POSTER_SIZE + actor.profile_path}`}
                     />
                   ) : null
                 )}</Slider>
           </RightCard>
         </Card>
+      
       )}
     </div>
   );

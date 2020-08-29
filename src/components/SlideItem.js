@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 const Image = styled.img`
-max-height: 100px;
+
 margin: 0px 2px;
 transition: transform 300ms ease 100ms;
 :hover{

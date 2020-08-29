@@ -4,10 +4,10 @@ import {breakpoint} from "../helpers/mediaQueries";
 import Spinner from "../components/Spinner";
 import Slider from "../components/Slider";
 import SlideItem from "./SlideItem";
-import { IMAGE_URL } from "../config";
+import { IMAGE_URL, POSTER_SIZE } from "../config";
 
 const Poster = styled.img`
-@media${breakpoint.sm}{
+@media${breakpoint.lg}{
    width: 250px;
     }
 `;
@@ -22,7 +22,7 @@ const Header = styled.div`
 display: flex;
 height: 278px;
 padding-bottom: 20px;
-@media${breakpoint.sm}{
+@media${breakpoint.lg}{
 flex-direction: column;
 height: auto;
 }
@@ -45,6 +45,15 @@ const Detail = styled.div`
 margin: 5px;
 text-align: left;
 `;
+
+const SlideContainer = styled.div`
+width: 60%;
+padding: 0 20px;
+@media${breakpoint.lg}{
+  width: 100%;
+  padding: 0;
+}
+`
 
 const Biography = styled.div`
 text-align: left;
@@ -70,16 +79,19 @@ const ActorCard = ({ loading, poster, backdrop, actor }) =>{
           <Detail>Birthday: {actor.birthday}</Detail>
           <Detail>Place of birth: {actor.place_of_birth}</Detail>
           <Detail>Known for: {actor.known_for_department}</Detail>
-          <Slider height="100px">{actor?.movie_credits?.cast?.map((movie, i) =>
+      </Details>
+      <SlideContainer>
+      <Slider >{actor?.movie_credits?.cast?.map((movie, i) =>
                   movie.poster_path ? (
                    <SlideItem
                       path={`/movie/${movie.id}`}
-                      image={`${IMAGE_URL}w185${movie.poster_path}`}
+                      image={`${IMAGE_URL + POSTER_SIZE + movie.poster_path}`}
                     />
                   ) : null
                 )}</Slider>
-      </Details>
+                </SlideContainer>
             </Header>
+ 
             <Biography>
                 <h1>Biography</h1>
                 <p>{actor.biography}</p>
