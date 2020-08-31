@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { TMDB_URL, IMAGE_URL, API_KEY, BACKDROP_SIZE } from "../config";
-import Background from "../components/Background";
+import { TMDB_URL, API_KEY } from "../config";
+import CarouselSlider from "../components/CarouselSlider";
 import Button from "../components/Button";
 import MovieList from "../components/MovieList";
 
@@ -34,12 +34,9 @@ const Home = ({ data, dispatch }) => {
   },[data.actualPage]);
   return (
     <Container>
-      <Background
-        image={`${
-          IMAGE_URL + BACKDROP_SIZE + data.backgroundImage.backdrop_path
-        }`}
-        title={data.backgroundImage.title}
-        overview={data.backgroundImage.overview}
+      <CarouselSlider
+      dispatch={dispatch}
+      data={data}
       />
       <MovieList data={data} />
       <Button onClick ={ () => dispatch({

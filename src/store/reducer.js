@@ -28,9 +28,11 @@ export const reducer = (state, action) => {
         return {
           ...state,
           loading: false,
+          slides: action.payload.results.filter((movie,i) =>{
+            if(i < 5 ) return movie;
+          }),
           movies: action.payload.results,
           totalPages: action.payload.total_pages,
-          backgroundImage: action.payload.results[2],
         };
         case "DISPLAY_RESULTS" : 
         return{
@@ -38,6 +40,11 @@ export const reducer = (state, action) => {
           results: action.payload.results?.filter((movie, i) => {
             if (i < 10 && movie.poster_path) return movie;
           }),
+        }
+        case "SET_ACTUAL_BACKGROUND" : 
+        return{
+          ...state,
+          actualBackground: action.payload
         }
       default:
         return state;

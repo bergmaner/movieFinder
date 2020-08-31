@@ -8,14 +8,14 @@ top: 0;
 bottom: 0;
 right: ${props => props.type === "next" ? "0" : ""};
 left: ${props => props.type === "prev" ? "0" : ""};
-width: 20px;
+width: 40px;
 height: 100%;
 background: rgba(0, 0, 0, 0.5);
 border: 0;
 outline: 0;
 padding: 0;
 margin:  0;
-z-index: 4;
+z-index: 1;
 transition: all 0.4s;
 cursor: pointer;
 :hover{

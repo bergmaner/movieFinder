@@ -16,7 +16,7 @@ const Details = styled.div`
 `;
 
 const Poster = styled.div`
-min-width: 185px;
+
   margin: 20px;
   cursor: pointer;
   background: white;
@@ -29,9 +29,6 @@ min-width: 185px;
   :hover ${Details} {
     transform: translateY(-85%);
   }
-  :hover img {
-    filter: blur(5px);
-  }
   :before {
     content: "";
     position: absolute;
@@ -41,7 +38,7 @@ min-width: 185px;
     width: 100%;
     height: 84%;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 90%, transparent);
-    transition: all 0.4s;
+    transition: transform 0.4s;
     z-index: 1;
   }
 `;

@@ -3,12 +3,8 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 const Image = styled.img`
 
-margin: 0px 2px;
+margin: 0;
 transition: transform 300ms ease 100ms;
-:hover{
-    transform: scale(1.1) !important;
-}
-
 `;
 
 

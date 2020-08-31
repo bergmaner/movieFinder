@@ -12,11 +12,12 @@ const MoviesContext = createContext(null);
 const App = () => {
   const data = {
     movies: [],
-    backgroundImage: "",
+    slides: [],
     loading: false,
     actualPage: 1,
     totalPages: 0,
     searchQuery: "",
+    actualBackground: 0,
   };
 
   const [state, dispatch] = useReducer(reducer, data);
