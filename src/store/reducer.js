@@ -38,7 +38,7 @@ export const reducer = (state, action) => {
         return{
           ...state,
           results: action.payload.results?.filter((movie, i) => {
-            if (i < 10 && movie.poster_path) return movie;
+            if (i < 10) return movie;
           }),
         }
         case "SET_ACTUAL_BACKGROUND" : 

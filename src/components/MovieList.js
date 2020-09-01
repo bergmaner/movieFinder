@@ -25,8 +25,8 @@ const MovieList = ({ data }) => {
         </MoviesContainer>
       ) : (
         <MoviesContainer>
-          {data.movies?.map((movie, i) =>
-            movie.poster_path ? <MoviePoster key={i} movie={movie} /> : null
+          {data.movies?.map((movie) =>
+           <MoviePoster key={movie.id} movie={movie} />
           )}
         </MoviesContainer>
       )}

@@ -4,6 +4,7 @@ import StarRating from "./StarRating";
 import Spinner from "./Spinner";
 import Slider from "./Slider";
 import SlideItem from "./SlideItem";
+import NoImage from "./NoImage";
 import { IMAGE_URL, LOGO_SIZE, POSTER_SIZE } from "../config";
 import { breakpoint } from "../helpers/mediaQueries";
 
@@ -82,20 +83,12 @@ const Image = styled.img`
 `;
 
 const Poster = styled.img`
-  height: 100% !important;
 
-  @media ${breakpoint.md} {
-    display: none;
-  }
 `;
 
 const Backdrop = styled.img`
-  display: none;
-  @media ${breakpoint.md} {
-    display: inline-block;
-    width: 100%;
-    height: 100% !important;
-  }
+width: 100%;
+height: 100% !important;
 `;
 
 const Overview = styled.p`
@@ -123,6 +116,27 @@ const Title = styled.h1`
   }
 `;
 
+const PosterContainer = styled.div`
+height: 100% !important;
+div{
+  height: 542px !important;
+}
+@media ${breakpoint.md} {
+  display: none;
+}
+`
+
+const BackdropContainer = styled.div`
+display: none;
+  @media ${breakpoint.md} {
+    display: inline-block;
+    div{
+      width: 100vw !important;
+      height: 100% !important;
+    }
+  }
+`
+
 const MovieCard = ({ loading, poster, backdrop, movie }) => {
   return (
     <div>
@@ -133,8 +147,8 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
       ) : (
         <Card>
           <LeftCard>
-            <Poster src={poster} />
-            <Backdrop src={backdrop} />
+      <PosterContainer>{ movie.poster_path ? <Poster src={poster} /> : <NoImage/>}</PosterContainer>
+      <BackdropContainer> { movie.backdrop_path ? <Backdrop src={backdrop} /> : <NoImage/>}</BackdropContainer>
           </LeftCard>
           <RightCard>
             {" "}
@@ -166,13 +180,14 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
                 ) : null
               )}
             </Wrapper>
-            <Slider>{movie?.credits?.cast?.map((actor, i) =>
-                  actor.profile_path ? (
+            <Slider>{movie?.credits?.cast?.map((actor) =>
                    <SlideItem
                       path={`/actor/${actor.id}`}
+                      isExist={actor?.profile_path}
+                      name={actor.name}
                       image={`${IMAGE_URL + POSTER_SIZE + actor.profile_path}`}
+                      key={actor.id}
                     />
-                  ) : null
                 )}</Slider>
           </RightCard>
         </Card>

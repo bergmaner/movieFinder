@@ -9,8 +9,9 @@ const useSliding = (elementWidth, countElements) => {
   const [hasPrev, setHasPrev] = useState(false);
   const [hasNext, setHasNext] = useState(true);
   useEffect(() => {
+    console.log("countElements: ", countElements)
     const containerWidth = containerRef.current.clientWidth;
-    if(((containerWidth / elementWidth)) >= countElements) setHasNext(false);
+    if(((containerWidth / elementWidth)) > countElements) setHasNext(false);
     setContainerWidth(containerWidth);
     setTotalInViewport(Math.floor(containerWidth / elementWidth));
   }, [containerRef.current]);

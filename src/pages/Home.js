@@ -20,7 +20,7 @@ const Home = ({ data, dispatch }) => {
       fetch(`${TMDB_URL}movie/popular?api_key=${API_KEY}&page=${data.actualPage}`)
         .then((result) => result.json())
         .then((result) => {
-          result.results = [...data.movies, ...result.results.filter((movie)=>{if(movie.poster_path)return movie})];
+          result.results = [...data.movies, ...result.results];
           dispatch({
             type: "DISPLAY_POPULAR_MOVIES",
             payload: result,

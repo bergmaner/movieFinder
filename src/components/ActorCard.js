@@ -4,9 +4,11 @@ import {breakpoint} from "../helpers/mediaQueries";
 import Spinner from "../components/Spinner";
 import Slider from "../components/Slider";
 import SlideItem from "./SlideItem";
+import NoImage from "./NoImage";
 import { IMAGE_URL, POSTER_SIZE } from "../config";
 
-const Poster = styled.img`
+const Poster = styled.div`
+width: 185px !important;
 @media${breakpoint.lg}{
    width: 250px;
     }
@@ -63,7 +65,8 @@ padding: 20px;
     }
 `;
 
-const ActorCard = ({ loading, poster, backdrop, actor }) =>{
+const ActorCard = ({ loading, poster, actor }) =>{
+  console.log("ac", actor.profile_path);
     return(
         <div>
 {loading ? (
@@ -73,7 +76,7 @@ const ActorCard = ({ loading, poster, backdrop, actor }) =>{
       ) : (
         <Card>
             <Header>
-            <Poster src={poster} />
+            <Poster>{ actor.profile_path ? <img src={poster} /> : <NoImage/> }</Poster>
       <Details>
           <Detail>Name: {actor.name}</Detail>
           <Detail>Birthday: {actor.birthday}</Detail>
@@ -81,13 +84,14 @@ const ActorCard = ({ loading, poster, backdrop, actor }) =>{
           <Detail>Known for: {actor.known_for_department}</Detail>
       </Details>
       <SlideContainer>
-      <Slider >{actor?.movie_credits?.cast?.map((movie, i) =>
-                  movie.poster_path ? (
+      <Slider >{actor?.movie_credits?.cast?.map((movie) =>
                    <SlideItem
+                      name={movie.title}
                       path={`/movie/${movie.id}`}
                       image={`${IMAGE_URL + POSTER_SIZE + movie.poster_path}`}
+                      isExist={movie?.poster_path}
+                      key={movie.id}
                     />
-                  ) : null
                 )}</Slider>
                 </SlideContainer>
             </Header>

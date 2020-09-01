@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import NoImage from "./NoImage";
 import { IMAGE_URL, POSTER_SIZE } from "../config";
 import StarRating from "./StarRating";
 
@@ -16,7 +17,6 @@ const Details = styled.div`
 `;
 
 const Poster = styled.div`
-
   margin: 20px;
   cursor: pointer;
   background: white;
@@ -73,7 +73,7 @@ const MoviePoster = ({ movie }) => {
   return (
     <Poster onClick={() => pushTo(`/movie/${movie.id}`)}>
       <div>
-        <Image src={`${IMAGE_URL + POSTER_SIZE + movie.poster_path}`} />
+  { movie.poster_path ? <Image src={`${IMAGE_URL + POSTER_SIZE + movie.poster_path}`} /> : <NoImage/> }
       </div>
       <Details>
         <Header>

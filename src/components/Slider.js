@@ -25,7 +25,7 @@ const Slider = ({ children }) => {
     containerRef,
     hasNext,
     hasPrev,
-  } = useSliding(180, Children.count(children?.filter((element)=> {if(element!=null) return element})));
+  } = useSliding(187, Children.count(children));
 
   return (
     <SliderWrapper>
