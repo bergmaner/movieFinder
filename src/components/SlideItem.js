@@ -21,6 +21,7 @@ position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
+    padding: 5px;
     background: rgba(0,0,0,.76);
     color: #fff;
     text-transform: uppercase;

@@ -12,8 +12,12 @@ const MoviesContext = createContext(null);
 const App = () => {
   const data = {
     movies: [],
+    popularMovies: [],
+    topRatedMovies: [],
+    nowPlayingMovies: [],
     slides: [],
-    loading: false,
+    discover: true,
+    loading: true,
     actualPage: 1,
     totalPages: 0,
     searchQuery: "",

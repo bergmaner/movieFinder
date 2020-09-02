@@ -1,6 +1,7 @@
 import React, { Children } from "react";
 import styled from "styled-components";
 import SlideButton from "./SlideButton";
+import useInterval from "../hooks/useInterval";
 import useSliding from "../hooks/useSliding.js";
 
 const SliderWrapper = styled.div`
@@ -17,15 +18,23 @@ z-index: 3;
 width: 100%;
 `;
 
-const Slider = ({ children }) => {
+const Slider = ({ children, autoplay }) => {
   const {
     handlePrev,
     handleNext,
+    handleResetDistance,
     slideProps,
     containerRef,
     hasNext,
     hasPrev,
-  } = useSliding(187, Children.count(children));
+  } = useSliding(185, Children.count(children));
+
+  const {setLive} = useInterval(
+    () => {
+      hasNext ? handleNext() : handleResetDistance();
+    },
+    autoplay ? 3000 : null
+  );
 
   return (
     <SliderWrapper>
@@ -34,8 +43,8 @@ const Slider = ({ children }) => {
            {children}
         </Container>
       </div>
-      {hasPrev && <SlideButton onClick={handlePrev} type="prev" />}
-        {hasNext && <SlideButton onClick={handleNext} type="next" />}
+      {hasPrev && <SlideButton onClick={() => (handlePrev(), setLive(false))} type="prev" />}
+        {hasNext && <SlideButton onClick={() => (handleNext(), setLive(false))} type="next" />}
       </SliderWrapper>
   );
 };

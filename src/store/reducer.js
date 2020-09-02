@@ -23,6 +23,7 @@ export const reducer = (state, action) => {
           loading: false,
           movies: action.payload.results,
           totalPages: action.payload.total_pages,
+          discover: false,
         };
       case "DISPLAY_POPULAR_MOVIES":
         return {
@@ -31,9 +32,21 @@ export const reducer = (state, action) => {
           slides: action.payload.results.filter((movie,i) =>{
             if(i < 5 ) return movie;
           }),
-          movies: action.payload.results,
+          popularMovies: action.payload.results,
           totalPages: action.payload.total_pages,
         };
+        case "DISPLAY_NOW_PLAYING":
+          return {
+            ...state,
+            loading: false,
+            nowPlayingMovies: action.payload.results,
+          };
+          case "DISPLAY_TOP_RATED":
+          return {
+            ...state,
+            loading: false,
+            topRatedMovies: action.payload.results,
+          };
         case "DISPLAY_RESULTS" : 
         return{
           ...state,

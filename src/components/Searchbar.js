@@ -116,6 +116,9 @@ const Searchbar = ({ state, dispatch }) => {
       history.push("/");
     }
     if (state.searchQuery !== "") {
+      dispatch({
+        type: "SEARCH_REQUEST",
+      });
       fetch(
         `${TMDB_URL}search/movie?api_key=${API_KEY}&query=${state.searchQuery}&page=${state.actualPage}`
       )

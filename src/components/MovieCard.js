@@ -180,7 +180,7 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
                 ) : null
               )}
             </Wrapper>
-            <Slider>{movie?.credits?.cast?.map((actor) =>
+            <Slider autoplay>{movie?.credits?.cast?.map((actor) =>
                    <SlideItem
                       path={`/actor/${actor.id}`}
                       isExist={actor?.profile_path}

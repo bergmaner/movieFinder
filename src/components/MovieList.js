@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MoviePoster from "./MoviePoster";
 import Spinner from "./Spinner";
+import Button from "./Button";
 
 const MoviesContainer = styled.div`
   background: #333231;
@@ -16,13 +17,12 @@ const Container = styled.div`
   background: #333231;
 `;
 
-const MovieList = ({ data }) => {
+const MovieList = ({ data, dispatch }) => {
+  console.log("load",data.loading)
   return (
     <Container>
-      {data.loading && data.searchQuery !=="" ? (
-        <MoviesContainer>
+      {data.loading ? (
           <Spinner />
-        </MoviesContainer>
       ) : (
         <MoviesContainer>
           {data.movies?.map((movie) =>
@@ -30,6 +30,12 @@ const MovieList = ({ data }) => {
           )}
         </MoviesContainer>
       )}
+                   <Button onClick ={ () =>(dispatch({
+        type: "SEARCH_REQUEST",
+      }), dispatch({
+        type: "SET_PAGE",
+        payload: data.actualPage+1,
+      }))}>Load More</Button> 
     </Container>
   );
 };

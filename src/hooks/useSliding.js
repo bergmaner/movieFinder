@@ -8,12 +8,13 @@ const useSliding = (elementWidth, countElements) => {
   const [viewed, setViewed] = useState(0);
   const [hasPrev, setHasPrev] = useState(false);
   const [hasNext, setHasNext] = useState(true);
+
   useEffect(() => {
     console.log("countElements: ", countElements)
     const containerWidth = containerRef.current.clientWidth;
     if(((containerWidth / elementWidth)) > countElements) setHasNext(false);
     setContainerWidth(containerWidth);
-    setTotalInViewport(Math.floor(containerWidth / elementWidth));
+    setTotalInViewport(containerWidth / elementWidth);
   }, [containerRef.current]);
 
   const handlePrev = () => {
@@ -30,11 +31,18 @@ const useSliding = (elementWidth, countElements) => {
     setDistance(distance - containerWidth);
   };
 
+  const handleResetDistance = () => {
+    setHasPrev(false);
+    setHasNext(true);
+    setDistance(0);
+    setViewed(0);
+  }
+
   const slideProps = {
     style: { transform: `translate3d(${distance}px, 0, 0)` },
   };
 
-  return { handlePrev, handleNext, slideProps, containerRef, hasPrev, hasNext };
+  return { handlePrev, handleNext, handleResetDistance, slideProps, containerRef, hasPrev, hasNext };
 };
 
 export default useSliding;
