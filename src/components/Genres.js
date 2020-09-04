@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { API_KEY } from "../config";
+import { API_KEY, TMDB_URL } from "../config";
 import Spinner from "./Spinner";
 import styled from "styled-components";
 
@@ -25,7 +25,7 @@ color: #000;
 const Genres = ({data, dispatch}) => {
     const [loading,setLoading] = useState(true);
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
+        fetch(`${TMDB_URL}genre/movie/list?api_key=${API_KEY}`)
           .then((response) => response.json())
           .then((res) => {
               setLoading(false);

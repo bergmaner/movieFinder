@@ -3,7 +3,7 @@ import styled from "styled-components";
 import MoviePoster from "./MoviePoster";
 import Spinner from "./Spinner";
 import Button from "./Button";
-import { API_KEY } from "../config";
+import { API_KEY, TMDB_URL } from "../config";
 
 const MoviesContainer = styled.div`
   background: #333231;
@@ -19,14 +19,11 @@ const Container = styled.div`
 `;
 
 const MovieList = ({ data, dispatch }) => {
-  console.log("load", data.loading);
-
   useEffect(() => {
-    console.log("data",data)
     if(data.type === "FILTER")
     {
    let url = `&include_adult=false&include_video=false&page=${data.actualPage}&with_genres=${data.genre}`;
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}${url}`)
+    fetch(`${TMDB_URL}discover/movie?api_key=${API_KEY}${url}`)
     .then(response => response.json())
     .then(res => {
       res.results = [...data.movies, ...res.results];

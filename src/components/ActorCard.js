@@ -78,7 +78,6 @@ width: 40%;
 `
 
 const ActorCard = ({ loading, poster, actor }) => {
-  console.log("ac", actor.profile_path);
   return (
     <div>
       {loading ? (
