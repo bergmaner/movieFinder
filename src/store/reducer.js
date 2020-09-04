@@ -9,13 +9,14 @@ export const reducer = (state, action) => {
         return {
           ...state,
           searchQuery: action.payload,
-
+          
         };
         case "SEARCH_REQUEST":
         return {
           ...state,
+          movies: [],
           actualPage: 1,
-          loading: true,
+         loading: true,
         };
       case "SEARCH_MOVIES":
         return {
@@ -23,7 +24,7 @@ export const reducer = (state, action) => {
           loading: false,
           movies: action.payload.results,
           totalPages: action.payload.total_pages,
-          discover: false,
+          type: "SEARCH",
         };
       case "DISPLAY_POPULAR_MOVIES":
         return {
@@ -32,21 +33,38 @@ export const reducer = (state, action) => {
           slides: action.payload.results.filter((movie,i) =>{
             if(i < 5 ) return movie;
           }),
-          popularMovies: action.payload.results,
+          discoverList: {...state.discoverList,popularMovies:[...action.payload.results]},
           totalPages: action.payload.total_pages,
         };
         case "DISPLAY_NOW_PLAYING":
           return {
             ...state,
             loading: false,
-            nowPlayingMovies: action.payload.results,
+            discoverList: {...state.discoverList,nowPlayingMovies:[...action.payload.results]},
           };
           case "DISPLAY_TOP_RATED":
           return {
             ...state,
             loading: false,
-            topRatedMovies: action.payload.results,
+            discoverList:{...state.discoverList,topRatedMovies:[...action.payload.results]},
           };
+          case "FILTER_BY_GENRES":
+            return {
+              ...state,
+              movies: action.payload.results,
+              loading:false,
+            };
+          case "DISPLAY_GENRES":
+          return {
+            ...state,
+            genres: action.payload.genres,
+          };
+          case "DISPLAY_GENRE":
+            return {
+              ...state,
+              genre: action.payload,
+              type: "FILTER",
+            };
         case "DISPLAY_RESULTS" : 
         return{
           ...state,

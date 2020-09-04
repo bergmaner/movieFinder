@@ -1,0 +1,47 @@
+import React, { useEffect, useState } from "react";
+import { API_KEY } from "../config";
+import Spinner from "./Spinner";
+import styled from "styled-components";
+
+const GenresContainer = styled.div`
+dislay: flex;
+text-align: left;
+margin: 20px;
+
+`
+
+const Genre = styled.div`
+display: inline-block;
+padding: 0 5px;
+margin: 5px 0;
+border-right: 1px solid #fff;
+color: #fff;
+transition: 0.2s color ease;
+cursor: pointer;
+:hover{
+color: #000;
+`
+
+const Genres = ({data, dispatch}) => {
+    const [loading,setLoading] = useState(true);
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
+          .then((response) => response.json())
+          .then((res) => {
+              setLoading(false);
+            dispatch({
+              type: "DISPLAY_GENRES",
+              payload: res,
+            });
+          })
+          .catch((error) => {
+            throw error;
+          });
+      }, []);
+      
+  return loading ? <Spinner/> : <GenresContainer>{data.genres.map((genre) => <Genre onClick={() =>   dispatch({
+    type: "DISPLAY_GENRE",
+    payload: genre.id,
+  })} key={genre.id}>{genre.name}</Genre>)}</GenresContainer>;
+};
+export default Genres;

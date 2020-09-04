@@ -12,11 +12,11 @@ const MoviesContext = createContext(null);
 const App = () => {
   const data = {
     movies: [],
-    popularMovies: [],
-    topRatedMovies: [],
-    nowPlayingMovies: [],
+    discoverList: {},
+    genres: [],
+    genre: "",
     slides: [],
-    discover: true,
+    type: "DISCOVER",
     loading: true,
     actualPage: 1,
     totalPages: 0,

@@ -6,3 +6,4 @@ export const POSTER_SIZE = "w185_and_h278_bestv2";
 export const MOVIE_CARD_SIZE = "w342"
 export const LOGO_SIZE = "w92";
 export const PROFILE_SIZE = "w45"
+export const DISCOVER_LIST= ["Popular Movies","Now Playing Movies", "Top Rated Movies"]

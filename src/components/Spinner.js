@@ -7,6 +7,9 @@ const LoadingContainer = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
+  img{
+    width: 50px;
+}
 `;
 
 const Spinner = () =>{
