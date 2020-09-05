@@ -7,7 +7,7 @@ import Actor from "./pages/Actor";
 import { reducer } from "./store/reducer";
 import "./App.css";
 
-const MoviesContext = createContext(null);
+export const MoviesContext = createContext();
 
 const App = () => {
   const data = {
@@ -26,12 +26,15 @@ const App = () => {
 
   const [state, dispatch] = useReducer(reducer, data);
   return (
-    <MoviesContext.Provider value={dispatch}>
+    <MoviesContext.Provider value={{
+      state,
+      dispatch
+    }}>
       <div className="App">
         <Router>
-          <Navbar state={state} dispatch={dispatch} />
+          <Navbar />
           <Route exact path="/">
-            <Home data={state} dispatch={dispatch} />
+            <Home/>
           </Route>
           <Route path="/movie/:id">
             <Movie />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_KEY, TMDB_URL } from "../config";
+import { MoviesContext } from "../App"
 import Spinner from "./Spinner";
 import styled from "styled-components";
 
@@ -22,7 +23,8 @@ cursor: pointer;
 color: #000;
 `
 
-const Genres = ({data, dispatch}) => {
+const Genres = () => {
+  const { state, dispatch } = React.useContext(MoviesContext);
     const [loading,setLoading] = useState(true);
     useEffect(() => {
         fetch(`${TMDB_URL}genre/movie/list?api_key=${API_KEY}`)
@@ -39,7 +41,7 @@ const Genres = ({data, dispatch}) => {
           });
       }, []);
       
-  return loading ? <Spinner/> : <GenresContainer>{data.genres.map((genre) => <Genre onClick={() =>   dispatch({
+  return loading ? <Spinner/> : <GenresContainer>{state.genres.map((genre) => <Genre onClick={() =>   dispatch({
     type: "DISPLAY_GENRE",
     payload: genre.id,
   })} key={genre.id}>{genre.name}</Genre>)}</GenresContainer>;

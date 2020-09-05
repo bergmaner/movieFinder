@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { MoviesContext } from "../App";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { MdSearch } from "react-icons/md";
@@ -84,7 +85,8 @@ const ListItem = styled.li`
   }
 `;
 
-const Searchbar = ({ state, dispatch }) => {
+const Searchbar = () => {
+  const { state, dispatch } = React.useContext(MoviesContext);
   const [focus, setFocus] = useState(false);
   const [onList, setOnList] = useState(false);
   let history = useHistory();

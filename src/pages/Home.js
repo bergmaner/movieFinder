@@ -6,6 +6,7 @@ import Spinner from "../components/Spinner";
 import Discover from "../components/Discover";
 import MovieList from "../components/MovieList";
 import Genres from "../components/Genres";
+import { MoviesContext } from "../App";
 
 const Container = styled.div`
   background: #333231;
@@ -19,7 +20,8 @@ const SpinnerContainer = styled.div`
   align-items: center;
 `;
 
-const Home = ({ data, dispatch }) => {
+const Home = () => {
+  const { state, dispatch } = React.useContext(MoviesContext);
   const displayMovies = async (movie_type, page) => {
     let url = `&include_adult=false&include_video=false&page=${page}`;
 
@@ -57,27 +59,27 @@ const Home = ({ data, dispatch }) => {
   };
   useEffect(() => {
     const fetchMovies = async () => {
-      await displayMovies("popular", data.actualPage);
-      await displayMovies("top_rated", data.actualPage);
-      await displayMovies("now_playing", data.actualPage);
+      await displayMovies("popular", state.actualPage);
+      await displayMovies("top_rated", state.actualPage);
+      await displayMovies("now_playing", state.actualPage);
     };
 
-    if (data.type === "DISCOVER") {
+    if (state.type === "DISCOVER") {
       fetchMovies();
     }
-  }, [data.actualPage]);
-  return data.loading ? (
+  }, [state.actualPage]);
+  return state.loading ? (
     <SpinnerContainer>
       <Spinner />
     </SpinnerContainer>
   ) : (
     <Container>
-      <CarouselSlider dispatch={dispatch} data={data} />
-      <Genres data={data} dispatch={dispatch} />
-      {data.type === "DISCOVER" ? (
-        <Discover data={data} />
+      <CarouselSlider/>
+      <Genres/>
+      {state.type === "DISCOVER" ? (
+        <Discover/>
       ) : (
-        <MovieList data={data} dispatch={dispatch} />
+        <MovieList/>
       )}
     </Container>
   );

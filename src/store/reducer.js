@@ -63,6 +63,7 @@ export const reducer = (state, action) => {
             return {
               ...state,
               genre: action.payload,
+              movies: [],
               type: "FILTER",
             };
         case "DISPLAY_RESULTS" : 

@@ -34,14 +34,14 @@ const Title = styled.div`
   }
 `;
 
-const Navbar = ({ state, dispatch }) => {
+const Navbar = () => {
   return (
     <Header>
       <Title>
         <Link to="/">Movie Finder</Link>
       </Title>
       <div>
-        <Searchbar state={state} dispatch={dispatch} />
+        <Searchbar />
       </div>
     </Header>
   );

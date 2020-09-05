@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import useInterval from "../hooks/useInterval";
+import { MoviesContext } from "../App";
 import { breakpoint } from "../helpers/mediaQueries";
 import { IMAGE_URL, BACKDROP_SIZE } from "../config";
 
@@ -76,14 +77,14 @@ const SlideControls = styled.div`
     }
   }
 `;
-const CarouselSlider = ({ dispatch, data }) => {
-
+const CarouselSlider = () => {
+  const { state, dispatch } = React.useContext(MoviesContext);
  const {setLive} = useInterval(
     () => {
       dispatch({
         type: "SET_ACTUAL_BACKGROUND",
         payload:
-          data.actualBackground + 1 === 5 ? 0 : data.actualBackground + 1,
+          state.actualBackground + 1 === 5 ? 0 : state.actualBackground + 1,
       });
     },
     3000
@@ -99,17 +100,17 @@ const CarouselSlider = ({ dispatch, data }) => {
 
   return (
     <HeroHeader>
-      {data.slides.map((item, i) => (
+      {state.slides.map((item, i) => (
         <SlideWrapper
-          translate={data.actualBackground * -100}
+          translate={state.actualBackground * -100}
           key={i}
-          image={IMAGE_URL + BACKDROP_SIZE + data.slides[i]?.backdrop_path}
+          image={IMAGE_URL + BACKDROP_SIZE + state.slides[i]?.backdrop_path}
         >
           <Description>
             <h1>{item.title}</h1>
             <div>{item.overview}</div>
-            <SlideControls actualBackground={data.actualBackground}>
-              {data.slides.map((slide, j) => (
+            <SlideControls actualBackground={state.actualBackground}>
+              {state.slides.map((slide, j) => (
                 <label onClick={() => handleClick(j)} />
               ))}
             </SlideControls>
