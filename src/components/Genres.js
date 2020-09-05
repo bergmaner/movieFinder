@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const GenresContainer = styled.div`
 dislay: flex;
+justify-content: center;
 text-align: left;
 margin: 20px;
 

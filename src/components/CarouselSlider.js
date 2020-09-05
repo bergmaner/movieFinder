@@ -7,6 +7,7 @@ import { IMAGE_URL, BACKDROP_SIZE } from "../config";
 
 const HeroHeader = styled.div`
   height: 70vh;
+  position:relative;
   white-space: nowrap;
   overflow: hidden;
 `;
@@ -48,6 +49,7 @@ const Description = styled.div`
   }
   div {
     text-align: left;
+    margin: 5px 0;
   }
 `;
 
@@ -56,6 +58,7 @@ const SlideControls = styled.div`
   width: 100%;
   bottom: 0;
   left: 0;
+  z-index: 2;
   text-align: center !important;
   label:nth-child(${(props) => props.actualBackground + 1}) {
     background: #fff;
@@ -65,9 +68,9 @@ const SlideControls = styled.div`
     cursor: pointer;
     border-radius: 5px;
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 2px;
+    width: 7px;
+    height: 7px;
+    margin: 3px;
     background: #bbb;
     transition: all 0.3s;
 
@@ -100,6 +103,11 @@ const CarouselSlider = () => {
 
   return (
     <HeroHeader>
+         <SlideControls actualBackground={state.actualBackground}>
+              {state.slides.map((slide, i) => (
+                <label key={i} onClick={() => handleClick(i)} />
+              ))}
+            </SlideControls>
       {state.slides.map((item, i) => (
         <SlideWrapper
           translate={state.actualBackground * -100}
@@ -109,11 +117,6 @@ const CarouselSlider = () => {
           <Description>
             <h1>{item.title}</h1>
             <div>{item.overview}</div>
-            <SlideControls actualBackground={state.actualBackground}>
-              {state.slides.map((slide, j) => (
-                <label onClick={() => handleClick(j)} />
-              ))}
-            </SlideControls>
           </Description>
         </SlideWrapper>
       ))}

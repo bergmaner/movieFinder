@@ -158,7 +158,7 @@ const MovieCard = ({ loading, poster, backdrop, movie }) => {
               <div>{movie.runtime} min</div>
               <Genres>
                 {movie?.genres?.map((genre, i) => (
-                  <Genre last={i === movie.genres.length - 1 ? true : false}>
+                  <Genre key={i} last={i === movie.genres.length - 1 ? true : false}>
                     {genre.name}{" "}
                   </Genre>
                 ))}

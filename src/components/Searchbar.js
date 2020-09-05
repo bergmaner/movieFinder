@@ -195,6 +195,7 @@ const Searchbar = () => {
       >
         {state?.results?.map((movie) => (
           <ListItem
+            key={movie.id}
             onClick={() => (setFocus(false), pushTo(`/movie/${movie.id}`))}
           >
             {movie.title}

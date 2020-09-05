@@ -8,7 +8,7 @@ const Header = styled.div`
   position: sticky;
   top: 0px;
   left: 0px;
-  z-index: 3;
+  z-index: 999;
   background: black;
   color: white;
   box-sizing: border-box;

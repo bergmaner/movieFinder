@@ -1,8 +1,11 @@
-import React, { Children } from "react";
+import React, { Children, useRef, useEffect } from "react";
 import styled from "styled-components";
 import SlideButton from "./SlideButton";
 import useInterval from "../hooks/useInterval";
 import useSliding from "../hooks/useSliding.js";
+import { gsap } from "gsap";
+import { Draggable } from "gsap/Draggable";
+gsap.registerPlugin(Draggable);
 
 const SliderWrapper = styled.div`
   width: 100%;
@@ -24,6 +27,7 @@ const Slider = ({ children, autoplay }) => {
     handleNext,
     handleResetDistance,
     slideProps,
+    maxDistance,
     containerRef,
     hasNext,
     hasPrev,
@@ -36,15 +40,34 @@ const Slider = ({ children, autoplay }) => {
     autoplay ? 3000 : null
   );
 
+    const handlePrevSlide = () =>{
+      hasPrev ? handlePrev() : handleResetDistance();
+      setLive(false);
+    }
+
+    const handleNextSlide = () =>{
+      hasNext ? handleNext() : handleResetDistance();
+      setLive(false);
+    }
+    useEffect(() => {
+      console.log("maxDistance",maxDistance)
+      Draggable.create(containerRef.current, {
+        type: "x",
+        bounds: {
+          minX: maxDistance,
+          maxX: 0
+        }
+      });
+    }, [maxDistance]);
   return (
-    <SliderWrapper>
+    <SliderWrapper >
       <div>
-        <Container ref={containerRef} {...slideProps}>
+        <Container onMouseOver={ () => setLive(false) } ref={containerRef} {...slideProps}>
            {children}
         </Container>
       </div>
-      {hasPrev && <SlideButton onClick={() => (handlePrev(), setLive(false))} type="prev" />}
-        {hasNext && <SlideButton onClick={() => (handleNext(), setLive(false))} type="next" />}
+    <SlideButton onClick={() => handlePrevSlide()} type="prev" />
+    <SlideButton onClick={() => handleNextSlide()} type="next" />
       </SliderWrapper>
   );
 };
