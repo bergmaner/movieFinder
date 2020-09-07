@@ -6,6 +6,7 @@ import Spinner from "../components/Spinner";
 import Discover from "../components/Discover";
 import MovieList from "../components/MovieList";
 import Genres from "../components/Genres";
+import Footer from "../components/Footer";
 import { MoviesContext } from "../App";
 
 const Container = styled.div`
@@ -81,6 +82,7 @@ const Home = () => {
       ) : (
         <MovieList/>
       )}
+      <Footer/>
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
+import { MoviesContext } from "../App";
 import { Link } from "react-router-dom";
 import { breakpoint } from "../helpers/mediaQueries";
 
@@ -25,9 +26,9 @@ const Title = styled.div`
   flex-grow: 1;
   display: flex;
   justify-content: flex-start;
-@media ${breakpoint.sm}{
-  font-size:24px;
-}
+  @media ${breakpoint.sm} {
+    font-size: 24px;
+  }
   a {
     color: white;
     text-decoration: none;
@@ -35,10 +36,20 @@ const Title = styled.div`
 `;
 
 const Navbar = () => {
+  const { dispatch } = React.useContext(MoviesContext);
   return (
     <Header>
       <Title>
-        <Link to="/">Movie Finder</Link>
+        <Link
+          onClick={() =>
+            dispatch({
+              type: "SET_DISCOVER",
+            })
+          }
+          to="/"
+        >
+          Movie Finder
+        </Link>
       </Title>
       <div>
         <Searchbar />

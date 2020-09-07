@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import { TMDB_URL, API_KEY, IMAGE_URL, MOVIE_CARD_SIZE,BACKDROP_SIZE } from "../config";
+import Footer from "../components/Footer";
 
 const Movie = () => {
   const { id } = useParams();
@@ -21,6 +22,7 @@ const Movie = () => {
   return (
     <div>
         <MovieCard loading={loading} movie={movie} poster={`${IMAGE_URL + MOVIE_CARD_SIZE + movie.poster_path}`} backdrop={`${IMAGE_URL + BACKDROP_SIZE + movie.backdrop_path}`}/>
+        <Footer/>
     </div>
   );
 };

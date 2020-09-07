@@ -78,6 +78,11 @@ export const reducer = (state, action) => {
           ...state,
           actualBackground: action.payload
         }
+        case "SET_DISCOVER" : 
+        return{
+          ...state,
+          type:"DISCOVER"
+        }
       default:
         return state;
     }

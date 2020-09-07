@@ -68,6 +68,7 @@ const ShortInfo = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  min-height: 70px;
   margin: 0px 5px;
   justify-content: flex-start;
   align-items: center;

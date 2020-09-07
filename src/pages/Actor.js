@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ActorCard from "../components/ActorCard";
 import { TMDB_URL, API_KEY, IMAGE_URL } from "../config";
+import Footer from "../components/Footer";
 
 const Actor = () => {
   const { id } = useParams();
@@ -21,6 +22,7 @@ const Actor = () => {
   return (
     <div>
         <ActorCard loading={loading} actor={actor} poster={`${IMAGE_URL}w185${actor.profile_path}`}/>
+        <Footer/>
     </div>
   );
 };
